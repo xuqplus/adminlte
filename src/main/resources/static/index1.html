@@ -356,7 +356,7 @@
         });
     });
     $('#shi').on('change', function () {
-        var city = $('#shi').val().substr(0, $('#sheng').val().indexOf(':'));
+        var city = $('#shi').val().substr(0, $('#shi').val().indexOf(':'));
         $.ajax({
             url: '/weather/city?city=' + city, success: function (res) {
                 $('#xian').html('<option selected="selected">请选择</option>');
