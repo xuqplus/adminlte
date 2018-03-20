@@ -393,6 +393,14 @@
                 }
             }
         });
+        setTimeout(function () {
+            myChart.data.datasets[0].data[2] = 50;
+            myChart.update();
+        }, 2000);
+        setTimeout(function () {
+            myChart.data.datasets[0].data = [1, 2, 3, 4, 5, 6];
+            myChart.update();
+        }, 4000);
     });
 </script>
 </body>

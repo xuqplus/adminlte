@@ -35,4 +35,24 @@ public class DataController {
         }
         return result;
     }
+
+    private static List<Map> colors;
+
+    static {
+        colors = new ArrayList<>();
+        int n = new Random().nextInt(100);
+        for (int i = 0; i++ < n; ) {
+        }
+    }
+
+    @GetMapping("colors")
+    public List colors(int page, int size) {
+        List result = new ArrayList();
+        for (int i = page * size; i < users.size(); i++) {
+            result.add(users.get(i));
+        }
+        return result;
+    }
+
+
 }
