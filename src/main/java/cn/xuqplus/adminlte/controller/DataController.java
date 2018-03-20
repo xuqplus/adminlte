@@ -30,8 +30,8 @@ public class DataController {
     @GetMapping("users")
     public List users(int page, int size) {
         List result = new ArrayList();
-        for (int i = 0; i <= size; i++) {
-            result.add(users.get(page * size + i));
+        for (int i = page * size; i < users.size(); i++) {
+            result.add(users.get(i));
         }
         return result;
     }

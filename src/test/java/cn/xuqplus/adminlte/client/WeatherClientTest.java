@@ -17,4 +17,8 @@ public class WeatherClientTest {
     public void bb() throws Exception {
         Map map = WeatherClient.getSubCityList("jiangsu");
     }
+
+    @Test
+    public void cc() throws Exception {
+    }
 }

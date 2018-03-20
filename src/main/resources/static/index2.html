@@ -299,8 +299,51 @@
 
         <section class="content">
             <div class="row">
-                <div class="col-md-6">
-                    <div id="content" class="box"></div>
+                <div class="col-md-12">
+                    <div class="form-group col-md-4">
+                        <label>省</label>
+                        <select id="sheng" class="form-control select2">
+                            <option selected="selected">请选择</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>市</label>
+                        <select id="shi" class="form-control select2">
+                            <option selected="selected">请选择</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>县</label>
+                        <select id="xian" class="form-control select2">
+                            <option selected="selected">请选择</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div id="weather" class="col-md-12">
+                    <div class="col-md-6">
+                        <div class="box box-primary">
+                            <div class="box-header with-border">
+                                <h3 class="box-title">Area Chart</h3>
+
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
+                                            class="fa fa-minus"></i>
+                                    </button>
+                                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i
+                                            class="fa fa-times"></i></button>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <div class="chart">
+                                    <canvas id="myChart" style="height:250px"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -310,63 +353,47 @@
 <script src="js/bootstrap.min.js"></script>
 <script src="js/admin-lte.min.js"></script>
 <script src="js/skins.js"></script>
+<script src="js/Chart.min.js"></script>
 <script>
-    function getPageableData(page, size, url) {
-        $.ajax({
-            url: url + '?page=' + page + '&size=' + size, success: function (res) {
-                var rows = '';
-                var pageable = '';
-                if (page == 0) {
-                    pageable += '<li class="disabled"><a href="#">&lt;&lt;上一页</a></li>';
-                } else {
-                    pageable += '<li onclick="getPageableData(' + (page - 1) + ',' + size + ',\'' + url + '\')"><a href="#">&lt;&lt;上一页</a></li>';
+    $(function () {
+        var ctx = document.getElementById("myChart").getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+                datasets: [{
+                    label: '# of Votes',
+                    data: [12, 29, 3, 15, 21, 3],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
                 }
-                for (var i = page - 5; i < page; i++) {
-                    if (i >= 0) {
-                        pageable += '<li onclick="getPageableData(' + i + ',' + size + ',\'' + url + '\')"><a href="#">' + (i + 1) + '</a></li>';
-                    }
-                }
-                for (var i in res) {
-                    if (i < size) {
-                        rows += '<tr>' +
-                            '<td>' + res[i]['id'] + '</td>' +
-                            '<td>' + res[i]['name'] + '</td>' +
-                            '<td>' + res[i]['password'] + '</td>' +
-                            '</tr>';
-                    }
-                }
-                if (res.length <= size) {
-                    pageable += '<li class="disabled"><a href="#">&gt;&gt;下一页</a></li>';
-                } else {
-                    pageable += '<li onclick="getPageableData(' + (page + 1) + ',' + size + ',\'' + url + '\')"><a href="#">&gt;&gt;下一页</a></li>';
-                }
-                var content =
-                    '<div class="box-header with-border">' +
-                    '   <h3 class="box-title">用户列表</h3>' +
-                    '</div>' +
-                    '<div class="box-body">' +
-                    '   <table class="table table-bordered">' +
-                    '       <tbody>' +
-                    '       <tr>' +
-                    '           <th>编 号</th>' +
-                    '           <th>姓 名</th>' +
-                    '           <th>密 码</th>' +
-                    '       </tr>' +
-                    rows +
-                    '       </tbody>' +
-                    '   </table>' +
-                    '</div>' +
-                    '<div class="box-footer clearfix">' +
-                    '   <ul class="pagination pagination-sm no-margin pull-right">' +
-                    pageable +
-                    '   </ul>' +
-                    '</div>';
-                $('#content').html(content);
             }
         });
-    }
-
-    getPageableData(0, 10, '/data/users');
+    });
 </script>
 </body>
 </html>
