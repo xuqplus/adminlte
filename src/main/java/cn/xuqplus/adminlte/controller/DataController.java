@@ -17,7 +17,7 @@ public class DataController {
 
     static {
         users = new ArrayList<>();
-        int n = new Random().nextInt(100);
+        int n = new Random().nextInt(100) + 100;
         for (int i = 0; i++ < n; ) {
             User user = new User();
             user.setId(Long.valueOf(i));
