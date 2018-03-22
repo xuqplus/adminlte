@@ -54,5 +54,7 @@ public class DataController {
         return result;
     }
 
-
+    public static List<User> getUsers() {
+        return users;
+    }
 }
