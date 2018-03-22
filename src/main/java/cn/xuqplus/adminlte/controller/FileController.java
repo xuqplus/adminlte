@@ -1,6 +1,7 @@
 package cn.xuqplus.adminlte.controller;
 
 import cn.xuqplus.adminlte.domain.User;
+import cn.xuqplus.adminlte.util.PathUtil;
 import org.apache.commons.io.FileUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.text.DecimalFormat;
@@ -18,7 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("file")
-public class CsvController {
+public class FileController {
     /**
      * 文件下载会占用大量内存
      */
@@ -58,12 +60,16 @@ public class CsvController {
         outputStream.close();
     }
 
+    /**
+     * public资源放到web目录下,由web容器提供下载
+     * 部分公开的资源使用url拦截判断权限
+     */
     @GetMapping("mp3")
-    public void mp3(HttpServletResponse response) throws IOException, InterruptedException {
+    public void mp3(HttpServletResponse response, HttpServletRequest request) throws IOException, InterruptedException {
         response.setHeader("attachment", "test.mp3");
         response.setContentType(MediaType.ALL.toString());
         OutputStream outputStream = response.getOutputStream();
-        InputStream is = new FileInputStream(new File("target/classes/static/assets/test.mp3"));
+        InputStream is = new FileInputStream(new File(PathUtil.path + "classes/static/assets/test.mp3"));
         byte[] bytes = new byte[4096];
         while (is.read(bytes) > 0) {
             outputStream.write(bytes);
@@ -71,5 +77,10 @@ public class CsvController {
             Thread.sleep(10);
         }
         outputStream.close();
+    }
+
+    @GetMapping("break")
+    public void break0() {
+
     }
 }
