@@ -11,6 +11,7 @@
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/admin-lte/2.4.3/css/skins/_all-skins.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/ionicons/4.0.0-18/collection/icon/icon.css" rel="stylesheet">
+    <link href="css/my.css" rel="stylesheet">
 
     <!--HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -315,20 +316,25 @@
                 <div class="input-group">
                     <input type="text" name="q" class="form-control" placeholder="搜索内容" autocomplete="off">
                     <span class="input-group-btn">
-            <button type="submit" name="search" id="search-btn" class="btn btn-flat">
-              <i class="fa fa-search"></i>
-            </button>
-          </span>
+                        <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                          <i class="fa fa-search"></i>
+                        </button>
+                    </span>
                 </div>
             </form>
             <ul class="sidebar-menu" data-widget="tree">
                 <li class="header">导航栏</li>
+                <li class="treeview sidebar-toggle">
+                    <a data-toggle="push-menu" role="button">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                </li>
                 <li class="treeview menu-open active">
                     <a href="#">
                         <i class="fa fa-dashboard"></i><span>工作面板</span>
                         <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                     </a>
                     <ul class="treeview-menu">
                         <li class="active">
@@ -344,8 +350,8 @@
                         <i class="fa fa-files-o"></i>
                         <span>布局建议</span>
                         <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-            </span>
+                            <span class="label label-primary pull-right">4</span>
+                        </span>
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="https://adminlte.io/themes/AdminLTE/pages/layout/top-nav.html">
@@ -366,8 +372,8 @@
                     <a href="https://adminlte.io/themes/AdminLTE/pages/widgets.html">
                         <i class="fa fa-th"></i> <span>Widgets</span>
                         <span class="pull-right-container">
-              <small class="label pull-right bg-green">new</small>
-            </span>
+                            <small class="label pull-right bg-green">new</small>
+                        </span>
                     </a>
                 </li>
                 <li class="treeview">
@@ -375,8 +381,8 @@
                         <i class="fa fa-pie-chart"></i>
                         <span>图表</span>
                         <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="https://adminlte.io/themes/AdminLTE/pages/charts/chartjs.html">
@@ -398,8 +404,8 @@
                         <i class="fa fa-laptop"></i>
                         <span>界面元素</span>
                         <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="https://adminlte.io/themes/AdminLTE/pages/UI/general.html#">
@@ -426,8 +432,8 @@
                     <a href="#">
                         <i class="fa fa-edit"></i> <span>表单</span>
                         <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="https://adminlte.io/themes/AdminLTE/pages/forms/general.html">
@@ -445,8 +451,8 @@
                     <a href="#">
                         <i class="fa fa-table"></i> <span>+表格+</span>
                         <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="page/tables/simple.html">
@@ -461,27 +467,27 @@
                     <a href="https://adminlte.io/themes/AdminLTE/pages/calendar.html">
                         <i class="fa fa-calendar"></i> <span>+日历+</span>
                         <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
-              <small class="label pull-right bg-blue">17</small>
-            </span>
+                          <small class="label pull-right bg-red">3</small>
+                          <small class="label pull-right bg-blue">17</small>
+                        </span>
                     </a>
                 </li>
                 <li>
                     <a href="https://adminlte.io/themes/AdminLTE/pages/mailbox/mailbox.html">
                         <i class="fa fa-envelope"></i> <span>+邮箱+</span>
                         <span class="pull-right-container">
-              <small class="label pull-right bg-yellow">12</small>
-              <small class="label pull-right bg-green">16</small>
-              <small class="label pull-right bg-red">5</small>
-            </span>
+                            <small class="label pull-right bg-yellow">12</small>
+                            <small class="label pull-right bg-green">16</small>
+                            <small class="label pull-right bg-red">5</small>
+                        </span>
                     </a>
                 </li>
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-folder"></i> <span>+示例+</span>
                         <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="page/examples/profile.html">
@@ -513,8 +519,8 @@
                     <a href="#">
                         <i class="fa fa-share"></i> <span>+级联菜单+</span>
                         <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
                     </a>
                     <ul class="treeview-menu">
                         <li><a href=""><i class="fa fa-circle-o"></i> 一级菜单</a></li>
@@ -710,9 +716,9 @@
                                 </div>
                                 <div class="col-sm-3 col-xs-6">
                                     <div class="description-block border-right">
-                    <span class="description-percentage text-yellow"><i
-                            class="fa fa-caret-left"></i> 0%</span>
-                                        <h5 class="description-header">$10,390.90</h5>
+                                        <span class="description-percentage text-yellow">
+                                            <i class="fa fa-caret-left"></i> 0%</span>
+                                            <h5 class="description-header">$10,390.90</h5>
                                         <span class="description-text">TOTAL COST</span>
                                     </div>
                                 </div>
@@ -786,8 +792,7 @@
                                     <h3 class="box-title">Direct Chat</h3>
 
                                     <div class="box-tools pull-right">
-                    <span data-toggle="tooltip" title="3 New Messages"
-                          class="badge bg-yellow">3</span>
+                                        <span data-toggle="tooltip" title="3 New Messages" class="badge bg-yellow">3</span>
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
                                                 class="fa fa-minus"></i>
                                         </button>
@@ -946,8 +951,8 @@
                                             <input type="text" name="message" placeholder="Type Message ..."
                                                    class="form-control">
                                             <span class="input-group-btn">
-                            <button type="button" class="btn btn-warning btn-flat">Send</button>
-                          </span>
+                                                <button type="button" class="btn btn-warning btn-flat">Send</button>
+                                            </span>
                                         </div>
                                     </form>
                                 </div>
@@ -1138,9 +1143,7 @@
                             <div class="progress">
                                 <div class="progress-bar" style="width: 50%"></div>
                             </div>
-                            <span class="progress-description">
-                    50% Increase in 30 Days
-                  </span>
+                            <span class="progress-description">50% Increase in 30 Days</span>
                         </div>
                     </div>
                     <div class="info-box bg-green">
@@ -1153,9 +1156,7 @@
                             <div class="progress">
                                 <div class="progress-bar" style="width: 20%"></div>
                             </div>
-                            <span class="progress-description">
-                    20% Increase in 30 Days
-                  </span>
+                            <span class="progress-description">20% Increase in 30 Days</span>
                         </div>
                     </div>
                     <div class="info-box bg-red">
@@ -1168,9 +1169,7 @@
                             <div class="progress">
                                 <div class="progress-bar" style="width: 70%"></div>
                             </div>
-                            <span class="progress-description">
-                    70% Increase in 30 Days
-                  </span>
+                            <span class="progress-description">70% Increase in 30 Days</span>
                         </div>
                     </div>
                     <div class="info-box bg-aqua">
@@ -1183,9 +1182,7 @@
                             <div class="progress">
                                 <div class="progress-bar" style="width: 40%"></div>
                             </div>
-                            <span class="progress-description">
-                    40% Increase in 30 Days
-                  </span>
+                            <span class="progress-description">40% Increase in 30 Days</span>
                         </div>
                     </div>
 
@@ -1229,8 +1226,7 @@
                                         class="fa fa-angle-up"></i> 4%</span></a>
                                 </li>
                                 <li><a href="#">China
-                                    <span class="pull-right text-yellow"><i
-                                            class="fa fa-angle-left"></i> 0%</span></a></li>
+                                    <span class="pull-right text-yellow"><i class="fa fa-angle-left"></i> 0%</span></a></li>
                             </ul>
                         </div>
                     </div>
@@ -1238,7 +1234,6 @@
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Recently Added Products</h3>
-
                             <div class="box-tools pull-right">
                                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
                                         class="fa fa-minus"></i>
@@ -1254,11 +1249,11 @@
                                         <img src="image//default-50x50.gif" alt="Product Image">
                                     </div>
                                     <div class="product-info">
-                                        <a href="javascript:void(0)" class="product-title">Samsung TV
-                                            <span class="label label-warning pull-right">$1800</span></a>
-                                        <span class="product-description">
-                          Samsung 32" 1080p 60Hz LED Smart HDTV.
-                        </span>
+                                        <a href="javascript:void(0)" class="product-title">
+                                            Samsung TV
+                                            <span class="label label-warning pull-right">$1800</span>
+                                        </a>
+                                        <span class="product-description">Samsung 32" 1080p 60Hz LED Smart HDTV.</span>
                                     </div>
                                 </li>
                                 <li class="item">
@@ -1268,9 +1263,7 @@
                                     <div class="product-info">
                                         <a href="javascript:void(0)" class="product-title">Bicycle
                                             <span class="label label-info pull-right">$700</span></a>
-                                        <span class="product-description">
-                          26" Mongoose Dolomite Men's 7-speed, Navy Blue.
-                        </span>
+                                        <span class="product-description">26" Mongoose Dolomite Men's 7-speed, Navy Blue.</span>
                                     </div>
                                 </li>
                                 <li class="item">
@@ -1280,9 +1273,7 @@
                                     <div class="product-info">
                                         <a href="javascript:void(0)" class="product-title">Xbox One <span
                                                 class="label label-danger pull-right">$350</span></a>
-                                        <span class="product-description">
-                          Xbox One Console Bundle with Halo Master Chief Collection.
-                        </span>
+                                        <span class="product-description">Xbox One Console Bundle with Halo Master Chief Collection.</span>
                                     </div>
                                 </li>
                                 <li class="item">
@@ -1292,9 +1283,7 @@
                                     <div class="product-info">
                                         <a href="javascript:void(0)" class="product-title">PlayStation 4
                                             <span class="label label-success pull-right">$399</span></a>
-                                        <span class="product-description">
-                          PlayStation 4 500GB Console (PS4)
-                        </span>
+                                        <span class="product-description">PlayStation 4 500GB Console (PS4)</span>
                                     </div>
                                 </li>
                             </ul>

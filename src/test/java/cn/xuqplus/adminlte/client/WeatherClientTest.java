@@ -9,6 +9,10 @@ import java.util.Map;
 
 public class WeatherClientTest {
 
+    private static final void LOG(Object o) {
+        System.out.println(o);
+    }
+
     @Test
     public void aa() throws IOException, NoSuchAlgorithmException {
         String aa = WeatherClient.getCityWeather("101190408");
