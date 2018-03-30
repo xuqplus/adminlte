@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
           name="viewport">
 
-    <link href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/admin-lte/2.4.3/css/AdminLTE.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/admin-lte/2.4.3/css/skins/_all-skins.css" rel="stylesheet">
@@ -336,9 +336,9 @@
                     }
                 }
                 if (res.length <= size) {
-                    pageable += '<li class="disabled"><a href="#">&gt;&gt;下一页</a></li>';
+                    pageable += '<li class="disabled"><a href="#">下一页&gt;&gt;</a></li>';
                 } else {
-                    pageable += '<li onclick="getPageableData(' + (page + 1) + ',' + size + ',\'' + url + '\')"><a href="#">&gt;&gt;下一页</a></li>';
+                    pageable += '<li onclick="getPageableData(' + (page + 1) + ',' + size + ',\'' + url + '\')"><a href="#">下一页&gt;&gt;</a></li>';
                 }
                 var content =
                     '<div class="box-header with-border">' +
