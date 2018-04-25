@@ -526,6 +526,13 @@ a:hover, a:active, a:focus {
     font-size: 12px
 }
 
+.sidebar-collapse .sidebar-menu li > a > .pull-right-container > .fa-angle-left {
+    -webkit-transform: rotate(-90deg);
+    -ms-transform: rotate(-90deg);
+    -o-transform: rotate(-90deg);
+    transform: rotate(-90deg)
+}
+
 .sidebar-menu li > a > .fa-angle-left, .sidebar-menu li > a > .pull-right-container > .fa-angle-left {
     width: auto;
     height: auto;
