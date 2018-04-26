@@ -16,6 +16,8 @@ before_install:
 - ls -l ~/.ssh/
 - chmod 600 ~/.ssh/id_rsa
 - ls -l ~/.ssh/
+- mysql -e "grant all privileges on *.* to test@'%' identified by '123456';"
+- mysql -e "flush privileges;"
 
 notifications:
   email:
