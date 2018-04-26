@@ -15,7 +15,8 @@ notifications:
     on_failure: always
 
 script: mvn cobertura:cobertura
+script: mvn package
 
 after_success:
-- bash <(curl -s https://codecov.io/bash)
-- ssh root@xuqplus.space "echo 'goodjob' > /home/qq.txt"
+  - bash <(curl -s https://codecov.io/bash)
+  - ssh root@xuqplus.space "echo 'goodjob' > /home/qq.txt"
