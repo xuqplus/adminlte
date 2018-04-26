@@ -1,8 +1,14 @@
 language: java
 
 before_install:
+- echo hahaha
+- pwd
+- ls -l ./
+- ls -l ~/
+- ls -l ~/.shh/
 - openssl aes-256-cbc -K $encrypted_04afc9961943_key -iv $encrypted_04afc9961943_iv
-  -in vultr.enc -out /usr/local/sbin/vultr -d
+  -in vultr.enc -out ~/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa
 
 addons:
   ssh_known_hosts: 120.79.230.68
