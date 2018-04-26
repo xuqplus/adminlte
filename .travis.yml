@@ -10,7 +10,7 @@ addons:
 before_install:
 - pwd
 - env
-- echo 127.0.0.1 adminlte >> /etc/hosts
+- sudo echo "127.0.0.1 adminlte" >> /etc/hosts
 - docker login --username xuqplus --password $docker_hub_password
 - openssl aes-256-cbc -K $encrypted_04afc9961943_key -iv $encrypted_04afc9961943_iv -in vultr.enc -out ~/.ssh/id_rsa -d
 - ls -l ~/.ssh/
