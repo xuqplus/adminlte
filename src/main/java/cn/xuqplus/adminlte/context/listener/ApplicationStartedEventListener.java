@@ -1,5 +1,6 @@
 package cn.xuqplus.adminlte.context.listener;
 
+import cn.xuqplus.adminlte.util.EnvUtil;
 import org.flywaydb.core.Flyway;
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
 import org.springframework.context.ApplicationListener;
@@ -15,7 +16,11 @@ public class ApplicationStartedEventListener implements ApplicationListener<Appl
     @Override
     public void onApplicationEvent(ApplicationEnvironmentPreparedEvent event) {
         Flyway flyway = new Flyway();
-        flyway.setDataSource(url, username, password, initSqls);
+        flyway.setDataSource(
+                EnvUtil.tryGetEnv("adminlte_db_url", url),
+                EnvUtil.tryGetEnv("adminlte_db_username", username),
+                EnvUtil.tryGetEnv("adminlte_db_password", password),
+                initSqls);
         flyway.setSchemas(schemas);
         flyway.migrate();
     }
