@@ -1,4 +1,4 @@
-package cn.xuqplus.adminlte.event.listener;
+package cn.xuqplus.adminlte.context.listener;
 
 import org.flywaydb.core.Flyway;
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
