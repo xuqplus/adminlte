@@ -7,7 +7,7 @@ import org.springframework.context.ApplicationListener;
 
 public class ApplicationStartedEventListener implements ApplicationListener<ApplicationEnvironmentPreparedEvent> {
 
-    String url = "jdbc:mysql://adminlte:3306/";
+    String url = "jdbc:mysql://localhost:3306/";
     String username = "test";
     String password = "123456";
     String[] schemas = {"adminlte"};
