@@ -27,4 +27,4 @@ script:
 - docker build -t xuqplus/adminlte . && docker push xuqplus/adminlte
 after_success:
 - bash <(curl -s https://codecov.io/bash)
-- ssh -i id_rsa.vultr root@xuqplus.space "echo 'goodjob' >> /home/qq.txt"
+- ssh -i id_rsa.vultr root@xuqplus.space "bash ~/adminlte.sh"
