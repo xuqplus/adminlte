@@ -5,10 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import javax.servlet.http.HttpServletRequest;
+import java.util.*;
 
 @RestController
 @RequestMapping("data")
@@ -52,6 +50,23 @@ public class DataController {
             result.add(users.get(i));
         }
         return result;
+    }
+
+    @GetMapping("addr")
+    public String addr(HttpServletRequest request) {
+        return request.getRemoteAddr();
+    }
+
+    @GetMapping("ip")
+    public Map ip(HttpServletRequest request) {
+        Map map = new HashMap();
+        String xRealIp = (String) request.getAttribute("X-real-ip");
+        map.put("X-real-ip", xRealIp);
+        String xForwardedFor = (String) request.getAttribute("X-Forwarded-For");
+        map.put("X-Forwarded-For", xForwardedFor);
+        String headerXForwardedFor = request.getHeader("X-Forwarded-For");
+        map.put("headerXForwardedFor", headerXForwardedFor);
+        return map;
     }
 
     public static List<User> getUsers() {
