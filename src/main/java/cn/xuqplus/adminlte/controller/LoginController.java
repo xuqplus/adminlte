@@ -1,5 +1,7 @@
 package cn.xuqplus.adminlte.controller;
 
+import cn.xuqplus.adminlte.context.exception.InvalidRequestException;
+import cn.xuqplus.adminlte.context.exception.WrongPasswordException;
 import cn.xuqplus.adminlte.domain.User;
 import cn.xuqplus.adminlte.repository.UserRepository;
 import org.apache.shiro.SecurityUtils;
@@ -26,20 +28,20 @@ public class LoginController {
 
     @PostMapping("/public/login")
     @ResponseBody
-    public String login(String name, String password) {
+    public String login(String name, String password) throws WrongPasswordException {
         AuthenticationToken token = new UsernamePasswordToken(name, password);
         Subject subject = SecurityUtils.getSubject();
         try {
             subject.login(token);
         } catch (Exception e) {
-            return "登录出错";
+            throw new WrongPasswordException("密码错误");
         }
         return "login succeed";
     }
 
     @PostMapping("/public/register")
     @ResponseBody
-    public String register(String name, String password) {
+    public String register(String name, String password) throws InvalidRequestException {
         User user = new User();
         user.setName(name);
         user.setPassword(password);
