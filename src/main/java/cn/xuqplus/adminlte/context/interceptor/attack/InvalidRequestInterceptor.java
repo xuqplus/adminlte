@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
+import static cn.xuqplus.adminlte.context.handler.InvalidRequestExceptionHandler.getRemoveID;
+
 @Component
 public class InvalidRequestInterceptor implements HandlerInterceptor {
     private static final Logger LOGGER = LoggerFactory.getLogger(InvalidRequestInterceptor.class);
@@ -24,7 +26,7 @@ public class InvalidRequestInterceptor implements HandlerInterceptor {
         /**
          * ip层面拦截
          */
-        String k = InvalidRequestExceptionHandler.class.getName() + request.getRemoteAddr();
+        String k = getRemoveID(request);
         Object o = servletContext.getAttribute(k);
         if (null == o) return true;
         Map invalid = (Map) o;

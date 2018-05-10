@@ -35,12 +35,12 @@ public class InterceptorConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(demoInterceptor).addPathPatterns("/**");
+        registry.addInterceptor(invalidRequestInterceptor).addPathPatterns("/**");
+        registry.addInterceptor(wrongPasswordInterceptor).addPathPatterns("/public/login");
         /**
          * 防重放, 顺序有关
          */
-        registry.addInterceptor(wrongPasswordInterceptor).addPathPatterns("/public/login");
-        registry.addInterceptor(invalidRequestInterceptor).addPathPatterns("/**");
-        registry.addInterceptor(demoInterceptor).addPathPatterns("/**");
         if (replay) {
             // registry.addInterceptor(timestampInterceptor).addPathPatterns("/public/**");
             // registry.addInterceptor(nonceInterceptor).addPathPatterns("/public/**");

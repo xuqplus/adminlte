@@ -60,12 +60,12 @@ public class DataController {
     @GetMapping("ip")
     public Map ip(HttpServletRequest request) {
         Map map = new HashMap();
-        String xRealIp = (String) request.getAttribute("X-real-ip");
-        map.put("X-real-ip", xRealIp);
-        String xForwardedFor = (String) request.getAttribute("X-Forwarded-For");
-        map.put("X-Forwarded-For", xForwardedFor);
-        String headerXForwardedFor = request.getHeader("X-Forwarded-For");
-        map.put("headerXForwardedFor", headerXForwardedFor);
+        map.put("X-real-ip", request.getHeader("X-real-ip"));
+        map.put("X-Forwarded-For", request.getHeader("X-Forwarded-For"));
+        map.put("RemoteAddr", request.getRemoteAddr());
+        map.put("ContextPath", request.getContextPath());
+        map.put("ServerName", request.getServerName());
+        map.put("RequestedSessionId", request.getRequestedSessionId());
         return map;
     }
 

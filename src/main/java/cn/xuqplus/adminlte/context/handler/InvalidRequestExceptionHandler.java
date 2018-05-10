@@ -24,7 +24,7 @@ public class InvalidRequestExceptionHandler extends AbstractExceptionHandler {
 
     @ExceptionHandler(value = InvalidRequestException.class)
     public ResponseEntity handle(HttpServletRequest request, HttpServletResponse response, InvalidRequestException e) {
-        String k = InvalidRequestExceptionHandler.class.getName() + request.getRemoteAddr();
+        String k = getRemoveID(request);
         Object o = servletContext.getAttribute(k);
         if (null == o) {
             Map map = new HashMap(4);
@@ -44,7 +44,11 @@ public class InvalidRequestExceptionHandler extends AbstractExceptionHandler {
     ResponseEntity returnable(HttpServletRequest request, HttpServletResponse response, Exception e) {
         String body = String.format(
                 "{\"path\":\"%s\",\"message\":\"%s\",\"timestamp\":\"%s\",\"message1\":\"%s\"}",
-                request.getRequestURI(), e.getMessage(), new Date(), "您的ip已经加入豪华黑名单");
+                request.getRequestURI(), e.getMessage(), new Date(), "您的ip已经加入豪华黑名单-" + getRemoveID(request));
         return new ResponseEntity(body, HttpStatus.valueOf(response.getStatus()));
+    }
+
+    public static String getRemoveID(HttpServletRequest request) {
+        return String.format("%s-%s-%s", InvalidRequestExceptionHandler.class.getName(), request.getRemoteAddr(), request.getHeader("X-Forwarded-For"));
     }
 }
