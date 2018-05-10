@@ -19,12 +19,16 @@ public class ShiroConfig {
         /**
          * 登录页面
          */
-        factoryBean.setLoginUrl("/public/login.html");
+        factoryBean.setLoginUrl("/public/login2.html");
 
         /**
          * 过滤规则
          */
         Map definitions = new HashMap();
+        definitions.put("/js/**", "anon");
+        definitions.put("/css/**", "anon");
+        definitions.put("/image/**", "anon");
+        definitions.put("/fonts/**", "anon");
         definitions.put("/public/**", "anon");
         definitions.put("/**", "authc");
         factoryBean.setFilterChainDefinitionMap(definitions);
