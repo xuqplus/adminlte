@@ -1,14 +1,20 @@
 package cn.xuqplus.adminlte.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull
     @Column(unique = true)
     private String name;
+    @NotNull
+    @Column(unique = true)
+    private String email;
+    @NotNull
     private String password;
 
     public Long getId() {
@@ -25,6 +31,14 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {

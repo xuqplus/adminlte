@@ -13,6 +13,7 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,14 +52,14 @@ public class LoginController {
     @GetMapping("/public/salt0")
     @ResponseBody
     public String salt0(String name) {
-        User user = userRepository.getByName(name);
+        User user = name.contains("@") ? userRepository.getByEmail(name) : userRepository.getByName(name);
         String[] passwordAtSalt0AtSalt1 = user.getPassword().split("@");
         return passwordAtSalt0AtSalt1[1];
     }
 
     @PostMapping("/public/register")
     @ResponseBody
-    public String register(String name, String password) throws InvalidRequestException, NoSuchAlgorithmException {
+    public String register(String name, String email, String password) throws InvalidRequestException, NoSuchAlgorithmException {
         /**
          * password=md5(md5(password+salt0)+salt1)@salt0@salt1
          */
@@ -67,6 +68,7 @@ public class LoginController {
         password = MessageDigestUtil.md5(MessageDigestUtil.md5(password + salt0).toUpperCase() + salt1) + "@" + salt0 + "@" + salt1;
         User user = new User();
         user.setName(name);
+        user.setEmail(email);
         user.setPassword(password);
         userRepository.save(user);
         return "succeed";

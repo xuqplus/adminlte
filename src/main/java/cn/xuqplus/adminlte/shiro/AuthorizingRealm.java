@@ -22,7 +22,8 @@ public class AuthorizingRealm extends org.apache.shiro.realm.AuthorizingRealm {
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-        User user = userRepository.getByName(token.getPrincipal().toString());
+        String nameOrEmail = token.getPrincipal().toString();
+        User user = nameOrEmail.contains("@") ? userRepository.getByEmail(nameOrEmail) : userRepository.getByName(nameOrEmail);
         String[] passwordAtSalt0AtSalt1 = user.getPassword().split("@");
         String password = passwordAtSalt0AtSalt1[0];
         String salt1 = passwordAtSalt0AtSalt1[2];
