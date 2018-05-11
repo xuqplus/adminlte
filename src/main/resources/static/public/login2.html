@@ -65,6 +65,7 @@
 
 <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://cdn.bootcss.com/bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
 <script src="../js/login.js"></script>
 
 <script>
@@ -75,6 +76,29 @@
             // console.log($('[name=remember]').val());
             // $('#remember').removeClass('fa-square-o');
             // $('#remember').addClass('fa-check-square-o');
+        });
+    });
+    $(function () {
+        $('form').on('submit', function () {
+            var name = $('[name=name]').val();
+            var password = $('[name=password]').val();
+            var salt0;
+            $.get({
+                url: 'salt0',
+                async: false,
+                data: {name: name},
+                success: function (response) {
+                    salt0 = response;
+                    if (password.length == 32 + salt0.length && password.endsWith(salt0)) {
+                        password = password.substr(0, 32);
+                    } else {
+                        password = md5(password + salt0);
+                    }
+                    $('[name=password]').val(password + salt0);
+                }
+            });
+            if (salt0.length > 0) return true;
+            return false;
         });
     });
 </script>
