@@ -2,11 +2,26 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="Cache-Control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
           name="viewport">
 
+    <script>
+        //防止浏览器缓存
+        (function() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if(xhr.readyState == 2 && xhr.status == 200) {
+                    if (xhr.responseURL.indexOf('.html') > 0) {
+                        console.log(xhr.responseURL);
+                        location.href= xhr.responseURL;
+                    }
+                }
+            }
+            xhr.open('options', '', true);
+            xhr.send();
+        })();
+    </script>
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/admin-lte/2.4.3/css/AdminLTE.min.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
@@ -719,7 +734,7 @@
                                     <div class="description-block border-right">
                                         <span class="description-percentage text-yellow">
                                             <i class="fa fa-caret-left"></i> 0%</span>
-                                            <h5 class="description-header">$10,390.90</h5>
+                                        <h5 class="description-header">$10,390.90</h5>
                                         <span class="description-text">TOTAL COST</span>
                                     </div>
                                 </div>
@@ -793,7 +808,8 @@
                                     <h3 class="box-title">Direct Chat</h3>
 
                                     <div class="box-tools pull-right">
-                                        <span data-toggle="tooltip" title="3 New Messages" class="badge bg-yellow">3</span>
+                                        <span data-toggle="tooltip" title="3 New Messages"
+                                              class="badge bg-yellow">3</span>
                                         <button type="button" class="btn btn-box-tool" data-widget="collapse"><i
                                                 class="fa fa-minus"></i>
                                         </button>
@@ -1227,7 +1243,8 @@
                                         class="fa fa-angle-up"></i> 4%</span></a>
                                 </li>
                                 <li><a href="#">China
-                                    <span class="pull-right text-yellow"><i class="fa fa-angle-left"></i> 0%</span></a></li>
+                                    <span class="pull-right text-yellow"><i class="fa fa-angle-left"></i> 0%</span></a>
+                                </li>
                             </ul>
                         </div>
                     </div>
