@@ -29,11 +29,12 @@ public class LoginController {
     @Value("${context.controller.login.passwordSaltLength}")
     int passwordSaltLength;
 
-    @RequestMapping("/public/logout")
+    @RequestMapping("/logout")
+    @ResponseBody
     public String logout() {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
-        return "";
+        return "succeed";
     }
 
     @PostMapping("/public/login")
