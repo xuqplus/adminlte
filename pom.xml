@@ -144,8 +144,9 @@
                 </includes>
             </resource>
             <resource>
+                <!--mvn clean package -DskipTests && java -jar target/adminlte-0.0.1-SNAPSHOT.jar-->
                 <directory>src/main/resources</directory>
-                <targetPath>BOOT-INF/classes</targetPath>
+                <targetPath>./</targetPath>
                 <includes>
                     <include>**</include>
                 </includes>

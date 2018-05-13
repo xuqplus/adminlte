@@ -31,9 +31,7 @@ public class InvalidRequestInterceptor implements HandlerInterceptor {
         if (null == o) return true;
         Map invalid = (Map) o;
         Integer invalidRequest = (Integer) invalid.get("invalidRequest");
-        Long lastInvalidRequest = (Long) invalid.get("lastInvalidRequest");
         if (invalidRequest > 20) return false;
-        if (System.currentTimeMillis() - lastInvalidRequest < 1000L * 60) return false;
         return true;
     }
 }

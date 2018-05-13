@@ -4,7 +4,7 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
-public class User {
+public class UserRegister {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -13,15 +13,10 @@ public class User {
     @Column(unique = true)
     private String email;
     private String password;
-
-    public User() {
-    }
-
-    public User(UserRegister userRegister) {
-        this.name = userRegister.getName();
-        this.email = userRegister.getEmail();
-        this.password = userRegister.getPassword();
-    }
+    private Long expiresAt;
+    private String verifyUrl;
+    private String verifyCode;
+    private Integer verifyCount;
 
     public Long getId() {
         return id;
@@ -53,5 +48,37 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Long getExpiresAt() {
+        return expiresAt;
+    }
+
+    public void setExpiresAt(Long expiresAt) {
+        this.expiresAt = expiresAt;
+    }
+
+    public String getVerifyUrl() {
+        return verifyUrl;
+    }
+
+    public void setVerifyUrl(String verifyUrl) {
+        this.verifyUrl = verifyUrl;
+    }
+
+    public String getVerifyCode() {
+        return verifyCode;
+    }
+
+    public void setVerifyCode(String verifyCode) {
+        this.verifyCode = verifyCode;
+    }
+
+    public Integer getVerifyCount() {
+        return verifyCount;
+    }
+
+    public void setVerifyCount(Integer verifyCount) {
+        this.verifyCount = verifyCount;
     }
 }
