@@ -5,6 +5,7 @@ import cn.xuqplus.adminlte.domain.UserRegister;
 import cn.xuqplus.adminlte.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -14,6 +15,7 @@ public class UserRegisterEventListener implements ApplicationListener<UserRegist
     MailService mailService;
 
     @Override
+    @Async
     public void onApplicationEvent(UserRegisterEvent event) {
         UserRegister userRegister = (UserRegister) event.getSource();
         long min = (userRegister.getExpiresAt() - System.currentTimeMillis()) / 1000L / 60;
