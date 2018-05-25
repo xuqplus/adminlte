@@ -1,35 +1,30 @@
-package cn.xuqplus.adminlte.controller;
+package cn.xuqplus.adminlte.controller.login;
 
-import cn.xuqplus.adminlte.context.event.UserRegisterEvent;
+import cn.xuqplus.adminlte.context.event.user.UserRegisterEvent;
 import cn.xuqplus.adminlte.context.exception.InvalidRequestException;
-import cn.xuqplus.adminlte.context.exception.WrongPasswordException;
-import cn.xuqplus.adminlte.domain.User;
-import cn.xuqplus.adminlte.domain.UserRegister;
-import cn.xuqplus.adminlte.repository.UserRegisterRepository;
-import cn.xuqplus.adminlte.repository.UserRepository;
+import cn.xuqplus.adminlte.domain.user.User;
+import cn.xuqplus.adminlte.domain.user.UserRegister;
+import cn.xuqplus.adminlte.repository.user.UserRegisterRepository;
+import cn.xuqplus.adminlte.repository.user.UserRepository;
 import cn.xuqplus.adminlte.util.MessageDigestUtil;
 import cn.xuqplus.adminlte.util.RandomUtil;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Controller;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.NoSuchAlgorithmException;
 
 @Controller
-public class LoginController {
+public class RegisterController {
+
     @Autowired
     UserRepository userRepository;
+
     @Autowired
     UserRegisterRepository userRegisterRepository;
 
@@ -38,35 +33,6 @@ public class LoginController {
 
     @Value("${context.controller.login.passwordSaltLength}")
     int passwordSaltLength;
-
-    @RequestMapping("/logout")
-    @ResponseBody
-    public String logout() {
-        Subject subject = SecurityUtils.getSubject();
-        subject.logout();
-        return "succeed";
-    }
-
-    @PostMapping("/public/login")
-    @ResponseBody
-    public String login(String name, String password) throws WrongPasswordException {
-        AuthenticationToken token = new UsernamePasswordToken(name, password.substring(0, 32).toUpperCase());
-        Subject subject = SecurityUtils.getSubject();
-        try {
-            subject.login(token);
-        } catch (Exception e) {
-            throw new WrongPasswordException("密码错误");
-        }
-        return "login succeed";
-    }
-
-    @GetMapping("/public/salt0")
-    @ResponseBody
-    public String salt0(String name) {
-        User user = name.contains("@") ? userRepository.getByEmail(name) : userRepository.getByName(name);
-        String[] passwordAtSalt0AtSalt1 = user.getPassword().split("@");
-        return passwordAtSalt0AtSalt1[1];
-    }
 
     @PostMapping("/public/register")
     @ResponseBody
@@ -86,17 +52,17 @@ public class LoginController {
         userRegister.setEmail(email);
         userRegister.setPassword(password);
         userRegister.setExpiresAt(System.currentTimeMillis() + 1000L * 60 * 20);
-        userRegister.setVerifyCode(verifyCode);
-        userRegister.setVerifyCount(0);
-        userRegister.setVerifyUrl(String.format("%s://%s:%s/public/verify/", request.getScheme(), request.getServerName(), request.getServerPort()));
+        userRegister.setCode(verifyCode);
+        userRegister.setCount(0);
+        userRegister.setUrl(String.format("%s://%s:%s/public/register/verify/", request.getScheme(), request.getServerName(), request.getServerPort()));
         userRegisterRepository.save(userRegister);
         eventPublisher.publishEvent(new UserRegisterEvent(userRegister));
         return "succeed";
     }
 
-    @GetMapping("/public/verify")
+    @GetMapping("/public/register/verify")
     @ResponseBody
-    public String verify(Long id, String verifyCode) throws InvalidRequestException {
+    public String registerVerify(Long id, String code) throws InvalidRequestException {
         if (!userRegisterRepository.existsById(id)) {
             throw new InvalidRequestException("verify id error");
         }
@@ -104,12 +70,12 @@ public class LoginController {
         if (System.currentTimeMillis() > userRegister.getExpiresAt()) {
             throw new InvalidRequestException("verify expired error");
         }
-        userRegister.setVerifyCount(userRegister.getVerifyCount() + 1);
+        userRegister.setCount(userRegister.getCount() + 1);
         userRegisterRepository.save(userRegister);
-        if (userRegister.getVerifyCount() > 10) {
+        if (userRegister.getCount() > 10) {
             throw new InvalidRequestException("verify count error");
         }
-        if (verifyCode.equals(userRegister.getVerifyCode())) {
+        if (code.equals(userRegister.getCode())) {
             User user = new User(userRegister);
             userRepository.save(user);
             userRegisterRepository.delete(userRegister);

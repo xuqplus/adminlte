@@ -1,6 +1,7 @@
-package cn.xuqplus.adminlte.repository;
+package cn.xuqplus.adminlte.repository.user;
 
-import cn.xuqplus.adminlte.domain.User;
+import cn.xuqplus.adminlte.domain.user.User;
+import org.hibernate.annotations.SQLUpdate;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {

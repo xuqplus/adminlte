@@ -1,7 +1,7 @@
 package cn.xuqplus.adminlte.controller;
 
-import cn.xuqplus.adminlte.domain.User;
-import cn.xuqplus.adminlte.repository.UserRepository;
+import cn.xuqplus.adminlte.domain.user.User;
+import cn.xuqplus.adminlte.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

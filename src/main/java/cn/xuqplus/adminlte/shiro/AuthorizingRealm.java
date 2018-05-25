@@ -1,7 +1,7 @@
 package cn.xuqplus.adminlte.shiro;
 
-import cn.xuqplus.adminlte.domain.User;
-import cn.xuqplus.adminlte.repository.UserRepository;
+import cn.xuqplus.adminlte.domain.user.User;
+import cn.xuqplus.adminlte.repository.user.UserRepository;
 import cn.xuqplus.adminlte.util.MessageDigestUtil;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -9,7 +9,6 @@ import org.apache.shiro.authz.Permission;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.authz.permission.AllPermission;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.security.NoSuchAlgorithmException;

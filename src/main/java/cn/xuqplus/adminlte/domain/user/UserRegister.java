@@ -1,7 +1,6 @@
-package cn.xuqplus.adminlte.domain;
+package cn.xuqplus.adminlte.domain.user;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class UserRegister {
@@ -14,9 +13,9 @@ public class UserRegister {
     private String email;
     private String password;
     private Long expiresAt;
-    private String verifyUrl;
-    private String verifyCode;
-    private Integer verifyCount;
+    private String url;
+    private String code;
+    private Integer count;
 
     public Long getId() {
         return id;
@@ -58,27 +57,27 @@ public class UserRegister {
         this.expiresAt = expiresAt;
     }
 
-    public String getVerifyUrl() {
-        return verifyUrl;
+    public String getUrl() {
+        return url;
     }
 
-    public void setVerifyUrl(String verifyUrl) {
-        this.verifyUrl = verifyUrl;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public String getVerifyCode() {
-        return verifyCode;
+    public String getCode() {
+        return code;
     }
 
-    public void setVerifyCode(String verifyCode) {
-        this.verifyCode = verifyCode;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public Integer getVerifyCount() {
-        return verifyCount;
+    public Integer getCount() {
+        return count;
     }
 
-    public void setVerifyCount(Integer verifyCount) {
-        this.verifyCount = verifyCount;
+    public void setCount(Integer count) {
+        this.count = count;
     }
 }

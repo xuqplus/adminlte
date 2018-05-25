@@ -1,4 +1,4 @@
-package cn.xuqplus.adminlte.context.schedule;
+package cn.xuqplus.adminlte.context.schedule.interceptor;
 
 import cn.xuqplus.adminlte.context.handler.InvalidRequestExceptionHandler;
 import org.slf4j.Logger;

@@ -1,6 +1,6 @@
 package cn.xuqplus.adminlte.controller;
 
-import cn.xuqplus.adminlte.domain.User;
+import cn.xuqplus.adminlte.domain.user.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

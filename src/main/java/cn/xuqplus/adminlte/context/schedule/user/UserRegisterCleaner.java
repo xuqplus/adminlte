@@ -1,7 +1,7 @@
-package cn.xuqplus.adminlte.context.schedule;
+package cn.xuqplus.adminlte.context.schedule.user;
 
-import cn.xuqplus.adminlte.domain.UserRegister;
-import cn.xuqplus.adminlte.repository.UserRegisterRepository;
+import cn.xuqplus.adminlte.domain.user.UserRegister;
+import cn.xuqplus.adminlte.repository.user.UserRegisterRepository;
 import org.apache.commons.collections.CollectionUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import java.util.Collections;
 import java.util.List;
 
 @Component

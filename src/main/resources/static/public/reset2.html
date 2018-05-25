@@ -31,34 +31,33 @@
         <a href="../index.html"><b>Admin</b>LTE</a>
     </div>
     <div class="login-box-body">
-        <p class="login-box-msg">登录页面</p>
+        <p class="login-box-msg">密码重置</p>
 
-        <form action="/public/login" method="post">
+        <form action="/public/reset" method="post">
             <div class="form-group has-feedback">
-                <input name="name" type="text" class="form-control" placeholder="账号">
+                <input name="name" type="text" class="form-control" placeholder="用户名/邮箱">
                 <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
             </div>
             <div class="form-group has-feedback">
-                <input name="password" type="password" class="form-control" placeholder="密码">
+                <input name="captcha" type="captcha" class="form-control" placeholder="验证码">
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
             </div>
             <div class="row">
                 <div class="col-xs-6">
                     <div class="checkbox icheck">
                         <label>
-                            <input name="remember" type="hidden">
-                            <a id="remember" class="fa fa-lg fa-square-o"></a> &nbsp;记住密码
+                            xxxx
                         </label>
                     </div>
                 </div>
                 <div class="col-xs-6">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+                    <button type="submit" class="btn btn-primary btn-block btn-flat">Reset</button>
                 </div>
             </div>
         </form>
 
-        <a href="reset2.html"> 忘记密码</a>&nbsp;
-        <a href="register2.html"> 注册账号</a>
+        <a href="register2.html"> 注册账号</a>&nbsp;
+        <a href="login2.html"> 去登录>></a>
 
     </div>
 </div>
@@ -70,36 +69,6 @@
 
 <script>
     $(function () {
-        $('#remember').click(function () {
-            $('#remember').toggleClass('fa-square-o fa-check-square-o');
-            $('[name=remember]').val($('#remember').attr('class').indexOf('fa-check-square-o') > -1);
-            // console.log($('[name=remember]').val());
-            // $('#remember').removeClass('fa-square-o');
-            // $('#remember').addClass('fa-check-square-o');
-        });
-    });
-    $(function () {
-        $('form').on('submit', function () {
-            var name = $('[name=name]').val();
-            var password = $('[name=password]').val();
-            var salt0;
-            $.get({
-                url: 'salt0',
-                async: false,
-                data: {name: name},
-                success: function (response) {
-                    salt0 = response;
-                    if (password.length == 32 + salt0.length && password.endsWith(salt0)) {
-                        password = password.substr(0, 32);
-                    } else {
-                        password = md5(password + salt0);
-                    }
-                    $('[name=password]').val(password + salt0);
-                }
-            });
-            if (salt0.length > 0) return true;
-            return false;
-        });
     });
 </script>
 </body>

@@ -1,6 +1,6 @@
 package cn.xuqplus.adminlte.controller;
 
-import cn.xuqplus.adminlte.domain.User;
+import cn.xuqplus.adminlte.domain.user.User;
 import cn.xuqplus.adminlte.util.PathUtil;
 import org.apache.commons.io.FileUtils;
 import org.springframework.http.HttpHeaders;

@@ -1,7 +1,6 @@
-package cn.xuqplus.adminlte.domain;
+package cn.xuqplus.adminlte.domain.user;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Entity
 public class User {
