@@ -62,7 +62,7 @@ public class RegisterController {
 
     @GetMapping("/public/register/verify")
     @ResponseBody
-    public String registerVerify(Long id, String code) throws InvalidRequestException {
+    public String verify(Long id, String code) throws InvalidRequestException {
         if (!userRegisterRepository.existsById(id)) {
             throw new InvalidRequestException("verify id error");
         }

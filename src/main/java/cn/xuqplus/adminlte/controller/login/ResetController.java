@@ -57,14 +57,14 @@ public class ResetController {
     }
 
     @GetMapping("/public/reset/verify")
-    public ModelAndView resetVerify(Long id, String code, ModelAndView mav) throws InvalidRequestException, NoSuchAlgorithmException {
+    public ModelAndView verify(Long id, String code, ModelAndView mav) throws InvalidRequestException, NoSuchAlgorithmException {
         mav.setViewName(String.format("redirect:/public/resetPassword.html?id=%s&code=%s", id, code));
         return mav;
     }
 
     @PostMapping("/public/reset/verify")
     @ResponseBody
-    public String resetVerify(Long id, String code, String password, ModelAndView mav) throws InvalidRequestException, NoSuchAlgorithmException {
+    public String verify(Long id, String code, String password) throws InvalidRequestException, NoSuchAlgorithmException {
         UserReset userReset = userResetRepository.getOne(id);
         if (null == userReset) {
             throw new InvalidRequestException("verify id error");
