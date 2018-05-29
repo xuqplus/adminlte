@@ -14,16 +14,16 @@ public class NginxService {
     @Autowired
     ShellService shellService;
 
-    public String catConf(String script) {
+    public String catConf() {
         return this.exec("cat-conf.sh", nginx);
     }
 
-    public String createConf(String script) {
-        return this.exec("echo-x-conf.sh");
+    public String createConf(String name, String ip, String port) {
+        return this.exec("echo-x-conf.sh", nginx, name, ip, port);
     }
 
-    public String reload(String script) {
-        return this.exec("reload.sh");
+    public String reload() {
+        return this.exec("reload.sh", nginx);
     }
 
     private String exec(String... script) {

@@ -74,5 +74,5 @@ echo -e "${conf}" > nginx.conf
 docker cp nginx.conf ${container}:/etc/nginx/
 rm nginx.conf
 
-docker exec -it ${container} mkdir /etc/nginx/conf.d/ > /dev/null
-docker exec -it ${container} mkdir /etc/nginx/sites-enabled/ > /dev/null
+docker exec -i ${container} mkdir /etc/nginx/conf.d/ > /dev/null
+docker exec -i ${container} mkdir /etc/nginx/sites-enabled/ > /dev/null

@@ -8,12 +8,12 @@ fi
 
 if [ $(docker exec -it ${container} nginx -t | grep -c fail) = 0 ]; then
     if [ $(docker exec -it ${container} nginx -t | grep -c success) != 0 ]; then
-        echo nginx -t success;
-        docker exec -it ${container} nginx -s reload;
-        echo nginx reloaded;
+        echo ${container} nginx -t success;
+        docker exec -i ${container} nginx -s reload;
+        echo ${container} nginx reloaded;
         exit 0
     fi
 fi
 
-echo nginx -t fail;
+echo ${container} nginx -t fail;
 exit 1
