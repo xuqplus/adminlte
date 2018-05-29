@@ -50,6 +50,7 @@ public class ShellService {
         if (!file.exists()) {
             file.getParentFile().mkdirs();
             FileUtils.copyInputStreamToFile(this.getClass().getClassLoader().getResourceAsStream(RESOURCE_PREFIX + script[0]), file);
+            file.setExecutable(true);
         }
         /*数组copy
         String[] r = new String[script.length + 1];
