@@ -16,5 +16,7 @@ ENV adminlte_db_url jdbc:mysql://172.17.0.9:3306/
 ENV adminlte_db_username test
 ENV adminlte_db_password 123456
 ENV DOCKER_HOST unix:///var/run/docker.sock
+ENV adminlte_docker_nginx adminlte-nginx
+ENV adminlte_docker_openvpn  adminlte-openvpn
 
 CMD java -jar app.jar

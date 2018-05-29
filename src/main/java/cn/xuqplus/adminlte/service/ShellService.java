@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
+import java.util.Arrays;
 
 @Service
 public class ShellService {
@@ -16,37 +17,47 @@ public class ShellService {
     private static final String PREFIX = "target/classes/";
     private static final String RESOURCE_PREFIX = "sh/";
 
-    public synchronized void exec(String script) {
+    public synchronized String exec(String... script) {
+        StringBuilder sb = new StringBuilder();
         try {
-            BUILDER.command("bash", extractScript(script));
+            BUILDER.command(extractScript(script));
             Process process = BUILDER.start();
             try (BufferedReader br = new BufferedReader(new InputStreamReader(process.getErrorStream()))) {
                 String line;
                 while (null != (line = br.readLine())) {
-                    LOGGER.error(line);
+                    sb.append(line).append("\n");
                 }
             }
             try (BufferedReader br = new BufferedReader(new InputStreamReader(process.getInputStream()))) {
                 String line;
                 while (null != (line = br.readLine())) {
-                    LOGGER.info(line);
+                    sb.append(line).append("\n");
                 }
             }
             int status = process.waitFor();
-            LOGGER.info(String.format("%s exit %s", script, status));
+            sb.append(String.format("%s exit %s", Arrays.toString(script), status));
         } catch (InterruptedException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        LOGGER.info(sb.toString());
+        return sb.toString();
     }
 
-    public String extractScript(String script) throws IOException {
-        File file = new File(PREFIX + RESOURCE_PREFIX + script);
+    private String[] extractScript(String... script) throws IOException {
+        File file = new File(PREFIX + RESOURCE_PREFIX + script[0]);
         if (!file.exists()) {
             file.getParentFile().mkdirs();
-            FileUtils.copyInputStreamToFile(this.getClass().getClassLoader().getResourceAsStream(RESOURCE_PREFIX + script), file);
+            FileUtils.copyInputStreamToFile(this.getClass().getClassLoader().getResourceAsStream(RESOURCE_PREFIX + script[0]), file);
         }
-        return file.getAbsolutePath();
+        /*数组copy
+        String[] r = new String[script.length + 1];
+        System.arraycopy(script, 0, r, 1, script.length);
+        r[0] = "bash";
+        r[1] = file.getAbsolutePath();
+        return r;*/
+        script[0] = file.getAbsolutePath();
+        return script;
     }
 }

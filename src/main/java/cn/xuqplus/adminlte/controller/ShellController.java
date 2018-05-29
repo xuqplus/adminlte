@@ -1,5 +1,6 @@
 package cn.xuqplus.adminlte.controller;
 
+import cn.xuqplus.adminlte.service.NginxService;
 import cn.xuqplus.adminlte.service.ShellService;
 import cn.xuqplus.adminlte.util.MailMessageUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,16 @@ public class ShellController {
     @Autowired
     ShellService shellService;
 
+    @Autowired
+    NginxService nginxService;
+
     @GetMapping("shell")
     public String shell(String script) throws IOException {
-        shellService.exec(script);
-        return "succeed";
+        return shellService.exec(script);
+    }
+
+    @GetMapping("nginx")
+    public String nginx(String script) throws IOException {
+        return nginxService.catConf(script);
     }
 }
