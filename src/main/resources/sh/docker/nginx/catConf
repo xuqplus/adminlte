@@ -1,9 +1,14 @@
 #!/bin/bash
 
+echo 0 is $0
+echo 1 is $1
+echo 2 is $2
+echo 3 is $3
+
 container=$1
 if [[ -z ${container} ]]; then
     echo container is null;
     exit 1
 fi
 
-docker exec -i ${container} cat /etc/nginx/nginx.conf
+docker exec -it ${container} cat /etc/nginx/nginx.conf

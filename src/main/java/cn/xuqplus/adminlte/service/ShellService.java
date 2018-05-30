@@ -20,7 +20,7 @@ public class ShellService {
     public synchronized String exec(String... script) {
         StringBuilder sb = new StringBuilder();
         try {
-            BUILDER.command(extractScript(script));
+            BUILDER.command(script);
             Process process = BUILDER.start();
             try (BufferedReader br = new BufferedReader(new InputStreamReader(process.getErrorStream()))) {
                 String line;
@@ -45,20 +45,19 @@ public class ShellService {
         return sb.toString();
     }
 
-    private String[] extractScript(String... script) throws IOException {
+    public String execScript(String... script) throws IOException {
         File file = new File(PREFIX + RESOURCE_PREFIX + script[0]);
         if (!file.exists()) {
             file.getParentFile().mkdirs();
             FileUtils.copyInputStreamToFile(this.getClass().getClassLoader().getResourceAsStream(RESOURCE_PREFIX + script[0]), file);
             file.setExecutable(true);
         }
-        /*数组copy
-        String[] r = new String[script.length + 1];
-        System.arraycopy(script, 0, r, 1, script.length);
+        //array copy, for tty running
+        String[] r = new String[script.length + 2];
+        System.arraycopy(script, 0, r, 2, script.length);
         r[0] = "bash";
-        r[1] = file.getAbsolutePath();
-        return r;*/
-        script[0] = file.getAbsolutePath();
-        return script;
+        r[1] = "-c";
+        r[2] = file.getAbsolutePath();
+        return exec(r);
     }
 }

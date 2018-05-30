@@ -11,8 +11,12 @@ public class ShellController {
     @Autowired
     ShellService shellService;
 
+    /**
+     * %20=space
+     * %7c=|
+     */
     @GetMapping("shell")
     public String shell(String script) {
-        return shellService.exec(script);
+        return shellService.exec(script.split(","));
     }
 }
