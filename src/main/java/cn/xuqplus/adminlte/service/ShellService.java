@@ -1,5 +1,6 @@
 package cn.xuqplus.adminlte.service;
 
+import cn.xuqplus.adminlte.util.StringUtil;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,12 +53,14 @@ public class ShellService {
             FileUtils.copyInputStreamToFile(this.getClass().getClassLoader().getResourceAsStream(RESOURCE_PREFIX + script[0]), file);
             file.setExecutable(true);
         }
-        //array copy, for tty running
+        /*//array copy, for tty running
         String[] r = new String[script.length + 2];
         System.arraycopy(script, 0, r, 2, script.length);
         r[0] = "bash";
         r[1] = "-c";
         r[2] = file.getAbsolutePath();
-        return exec(r);
+        return exec(r);*/
+        script[0] = file.getAbsolutePath();
+        return this.exec("bash", "-c", String.format(StringUtil.nAJoinB(script.length - 1, " ", "%s"), script));
     }
 }

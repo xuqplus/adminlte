@@ -76,3 +76,4 @@ rm nginx.conf
 
 docker exec -it ${container} mkdir /etc/nginx/conf.d/ > /dev/null
 docker exec -it ${container} mkdir /etc/nginx/sites-enabled/ > /dev/null
+docker exec -it ${container} mkdir /var/log/nginx/ > /dev/null

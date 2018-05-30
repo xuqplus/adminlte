@@ -42,16 +42,19 @@ echo -e "${conf}" > ${confFile}
 docker cp ${confFile} ${container}:/etc/nginx/sites-enabled/
 rm ${confFile} > /dev/null
 
+export tmp=`docker exec -i ${container} nginx -t 2>&1`
 
-if [ $(docker exec -it ${container} nginx -t | grep -c fail) != 0 ]; then
-    if [ $(docker exec -it ${container} nginx -t | grep -c success) -eq 0 ]; then
-        docker exec -it ${container} rm /etc/nginx/sites-enabled/${confFile}
+if [ $(echo ${tmp} | grep -c fail) != 0 ]; then
+    if [ $(echo ${tmp} | grep -c success) -eq 0 ]; then
+        docker exec -i ${container} rm /etc/nginx/sites-enabled/${confFile}
         echo ${confFile} nginx -t failed, deleted;
+        echo ${tmp}
+        exit 1
     fi
 fi
 
-if [ $(docker exec -it ${container} nginx -t | grep -c fail) = 0 ]; then
-    if [ $(docker exec -it ${container} nginx -t | grep -c success) != 0 ]; then
+if [ $(echo ${tmp} | grep -c fail) = 0 ]; then
+    if [ $(echo ${tmp} | grep -c success) != 0 ]; then
         echo ${confFile} nginx -t success;
     fi
 fi

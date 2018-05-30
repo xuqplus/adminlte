@@ -20,6 +20,11 @@ public class NginxController {
         return nginxService.catConf();
     }
 
+    @GetMapping("initConf")
+    public String initConf() throws IOException {
+        return nginxService.catConf();
+    }
+
     @GetMapping("createConf")
     public String createConf(String name, String ip, Integer port) throws IOException {
         return nginxService.createConf(name, ip, port.toString());
