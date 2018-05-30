@@ -22,7 +22,7 @@ public class NginxController {
 
     @GetMapping("initConf")
     public String initConf() throws IOException {
-        return nginxService.catConf();
+        return nginxService.initConf();
     }
 
     @GetMapping("createConf")
