@@ -29,4 +29,9 @@ public class ShellServiceTest extends AdminlteApplicationTests {
         String r = shellService.execScript("docker/nginx/catConf", "container", "serverName", "serverIp", "serverPort");
         Assert.assertTrue(r.contains("exit 1") || r.contains("exit 0"));
     }
+
+    @Test
+    public void aa() throws IOException {
+        String r = shellService.exec("bash", "-c", "openvpn /etc/openvpn/presk.conf ");
+    }
 }
