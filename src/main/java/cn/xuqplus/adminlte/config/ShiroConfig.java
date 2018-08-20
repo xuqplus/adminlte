@@ -31,7 +31,7 @@ public class ShiroConfig {
         definitions.put("/fonts/**", "anon");
         definitions.put("/public/**", "anon");
         definitions.put("/api/**", "anon");
-        definitions.put("/**", "authc");
+        definitions.put("/**", "anon");
         factoryBean.setFilterChainDefinitionMap(definitions);
         /**
          * 安全管理器
